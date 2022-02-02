@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2"
+    "@3rdweb/sdk": "^1.39.0",
+    "ethers": "^5.5.4",
+    "express": "^4.17.2",
+    "fs": "^0.0.1-security"
   }
 }
