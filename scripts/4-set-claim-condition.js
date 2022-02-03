@@ -1,5 +1,5 @@
 // import sdk from './1-initialize-sdk.js';
-import { followListInfoQuery } from "../utils/query";
+const { followListInfoQuery } = require("../utils/query.ts");
 // import { closeSync } from "fs";
 
 const { sdk } = require("./1-initialize-sdk");
