@@ -1,5 +1,5 @@
 // import sdk from './1-initialize-sdk.js';
-const { followListInfoQuery } = require("../utils/query.ts");
+const { followListInfoQuery } = require("../utils/query.js");
 // import { closeSync } from "fs";
 
 const { sdk } = require("./1-initialize-sdk");
@@ -13,18 +13,15 @@ const [followListInfo, setFollowListInfo] = useState(null);
 const NAME_SPACE = "CyberConnect";
 const NETWORK = "ethereum";
 
-exports.initFollowListInfo = async () => {
+exports.followListInfoQuery = async () => {
   const resp = await followListInfoQuery({
     address: "0x148d59faf10b52063071eddf4aaf63a395f2d41c",
-    namespace: NAME_SPACE,
-    network: NETWORK,
-    follower,
   });
   if (resp) {
     setFollowListInfo(resp);
   }
   console.log(111);
-  console.log(followListInfo);
+  console.log(resp);
 };
 
 exports.updateWhitelist = async () => {
