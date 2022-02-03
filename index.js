@@ -1,11 +1,15 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = 5000;
-const { updateWhitelist } = require('./scripts/4-set-claim-condition');
+const {
+  updateWhitelist,
+  initFollowListInfo,
+} = require("./scripts/4-set-claim-condition");
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   updateWhitelist();
-  res.send('Request update whitelist');
+  initFollowListInfo();
+  res.send("Request update whitelist");
 });
 
 app.listen(port, () => {
