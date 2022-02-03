@@ -32,6 +32,6 @@ exports.followListInfoQuery = async ({ address }) => {
   const schema = querySchemas["followListInfo"]({
     address,
   });
-  const resp = await handleQuery(schema, endPoint);
+  const resp = await request(endPoint, schema);
   return resp;
 };
