@@ -1,14 +1,9 @@
-// import sdk from './1-initialize-sdk.js';
-const { followListInfoQuery } = require("../utils/query.js");
-// import { closeSync } from "fs";
-
+const { followListInfoQuery, followListInfo } = require("../utils/query.js");
 const { sdk } = require("./1-initialize-sdk");
 
 const bundleDrop = sdk.getBundleDropModule(
   "0xfd1e14bA0aA9A5ff464c466cb84e6eA94693fDcD"
 );
-
-const [followListInfo, setFollowListInfo] = useState(null);
 
 const NAME_SPACE = "CyberConnect";
 const NETWORK = "ethereum";
@@ -18,7 +13,7 @@ exports.followListInfoQuery = async () => {
     address: "0x148d59faf10b52063071eddf4aaf63a395f2d41c",
   });
   if (resp) {
-    setFollowListInfo(resp);
+    followListInfo(resp);
   }
   console.log(111);
   console.log(resp);
