@@ -7,7 +7,7 @@ const bundleDrop = sdk.getBundleDropModule(
 
 const address = "0x8Ff7f00Fc3888387e7459785F73769999A65cd57";
 
-exports.followerList = async () => {
+const followerList = async () => {
   const resp = await followListInfoQuery({
     address,
   });
@@ -19,8 +19,9 @@ exports.followerList = async () => {
   return followers;
 };
 
-exports.updateWhitelist = async (followerListAddr = followerList()) => {
+exports.updateWhitelist = async () => {
   console.log("updateWhitelist");
+  followerListAddr = followerList();
   try {
     const factory = bundleDrop.getClaimConditionFactory();
     // const result = await bundleDrop.getAllClaimConditions(0);
