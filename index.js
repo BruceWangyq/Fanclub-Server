@@ -8,7 +8,7 @@ const {
 
 app.get("/", (req, res) => {
   followerList();
-  // updateWhitelist();
+  updateWhitelist();
   res.send("Request update whitelist");
 });
 
