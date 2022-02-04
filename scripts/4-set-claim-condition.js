@@ -1,36 +1,32 @@
-const { followListInfoQuery, followListInfo } = require("../utils/query.js");
+const { followListInfoQuery } = require("../utils/query.js");
 const { sdk } = require("./1-initialize-sdk");
 
 const bundleDrop = sdk.getBundleDropModule(
   "0xfd1e14bA0aA9A5ff464c466cb84e6eA94693fDcD"
 );
 
-const NAME_SPACE = "CyberConnect";
-const NETWORK = "ethereum";
+const address = "0x8Ff7f00Fc3888387e7459785F73769999A65cd57";
 
-exports.followListInfoQuery = async () => {
+exports.followerList = async () => {
   const resp = await followListInfoQuery({
-    address: "0x148d59faf10b52063071eddf4aaf63a395f2d41c",
+    address,
   });
-  if (resp) {
-    followListInfo(resp);
-  }
-  console.log(111);
-  console.log(resp);
+  const list = resp?.data?.identity?.followers?.list || [];
+  const followers = list.map((item) => {
+    return item.address;
+  });
+  console.log(followers);
+  return followers;
 };
 
-exports.updateWhitelist = async () => {
+exports.updateWhitelist = async (followerListAddr = followerList()) => {
   console.log("updateWhitelist");
   try {
     const factory = bundleDrop.getClaimConditionFactory();
     // const result = await bundleDrop.getAllClaimConditions(0);
 
     // Specify conditions.
-    const allowList = [
-      "0xaf5144eCca7B93F58Fb4239d052c73e9063Ca3af",
-      "0x8Ff7f00Fc3888387e7459785F73769999A65cd57",
-      "0xa641599FF42D43752Ea9f1EbaCcAB0F2e4D2C4a3",
-    ];
+    const allowList = followerListAddr;
     const claimPhase = factory.newClaimPhase({
       startTime: new Date(),
       maxQuantity: 10000,

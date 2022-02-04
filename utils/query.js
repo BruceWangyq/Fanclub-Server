@@ -1,20 +1,24 @@
 const endPoint = "https://api.cybertino.io/connect/";
 
-exports.followListInfo = ({ address }) => {
+const followerListInfo = ({ address }) => {
   return {
-    operationName: "followListInfo",
-    query: `query followListInfo($address: String!) {
-      allFollowing(address: $address) {
-          address
+    operationName: "followerListInfo",
+    query: `query followerListInfo($address: String!) {
+          identity (address:$address) {
+              followers {
+              list {
+                address
         }      
-    }`,
+    }
+  }
+}`,
     variables: {
       address,
     },
   };
 };
 
-exports.request = async (url = "", data = {}) => {
+const request = async (url = "", data = {}) => {
   const response = await fetch(url, {
     method: "POST",
     mode: "cors",
@@ -29,7 +33,7 @@ exports.request = async (url = "", data = {}) => {
 };
 
 exports.followListInfoQuery = async ({ address }) => {
-  const schema = querySchemas["followListInfo"]({
+  const schema = followerListInfo({
     address,
   });
   const resp = await request(endPoint, schema);

@@ -3,12 +3,12 @@ const app = express();
 const port = 5000;
 const {
   updateWhitelist,
-  followListInfo,
+  followerList,
 } = require("./scripts/4-set-claim-condition");
 
 app.get("/", (req, res) => {
-  updateWhitelist();
-  followListInfo();
+  followerList();
+  // updateWhitelist();
   res.send("Request update whitelist");
 });
 
