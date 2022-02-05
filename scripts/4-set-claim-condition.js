@@ -21,7 +21,7 @@ const followerList = async () => {
 
 exports.updateWhitelist = async () => {
   console.log("updateWhitelist");
-  followerListAddr = followerList();
+  followerListAddr = await followerList();
   try {
     const factory = bundleDrop.getClaimConditionFactory();
     // const result = await bundleDrop.getAllClaimConditions(0);
